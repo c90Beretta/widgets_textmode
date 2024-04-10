@@ -7,3 +7,7 @@ final  darkModeProvider = StateProvider<bool>((ref) => false);
 
 // Lsitado de colores inmutables 
 final colorListProvider = Provider((ref) => colorList);
+
+
+// Lista de colores mutables
+final colorProvider = StateProvider((ref) => colorList[0]);
