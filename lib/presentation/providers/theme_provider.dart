@@ -9,5 +9,5 @@ final  darkModeProvider = StateProvider<bool>((ref) => false);
 final colorListProvider = Provider((ref) => colorList);
 
 
-// Lista de colores mutables
-final colorProvider = StateProvider((ref) => colorList[0]);
+//Simple int
+final selectedColorProvider = StateProvider((ref) => 0);

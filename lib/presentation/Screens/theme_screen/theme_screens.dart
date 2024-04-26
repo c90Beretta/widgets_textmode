@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:widgets_sexmode/presentation/Screens/screens.dart';
 
@@ -16,7 +15,7 @@ class ThemeScreens extends ConsumerWidget {
           IconButton(
            icon:  Icon(isDarkMode ? Icons.light_mode : Icons.dark_mode),
             onPressed: (){
-              ref.read(darkModeProvider.notifier).state = !isDarkMode;
+              ref.read(darkModeProvider.notifier).update((state) => !state);
             },
           ),
 
@@ -35,17 +34,24 @@ class _ThemeChangerView extends ConsumerWidget {
   @override
   Widget build(BuildContext context , ref) {
     final List<Color> colors = ref.watch(colorListProvider);
+    final int selectedColor = ref.watch(selectedColorProvider);
+   
+   
     return ListView.builder(
-
-  
       itemCount: colors.length,
-
       itemBuilder: ( context,  index) {
         final Color color = colors[index];
 
-        return RadioListTile(value: value,  
-        groupValue: groupValue, 
-        onChanged:  onChanged)
+         return RadioListTile(
+          title: Text("Este Color $index", style: TextStyle(color: color),),
+          subtitle: Text("${color.value}"),
+          activeColor: color,
+         value: index,  
+         groupValue: selectedColor,
+         onChanged:  (value) {
+            ref.read(selectedColorProvider.notifier).state = index;
+         }
+       );
       },
     );
   }   

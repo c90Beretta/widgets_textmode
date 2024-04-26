@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:widgets_sexmode/config/router/app_router.dart';
 import 'package:widgets_sexmode/config/themes/app_theme.dart';
+import 'package:widgets_sexmode/presentation/providers/theme_provider.dart';
 
 
 void main() {
@@ -10,16 +11,18 @@ void main() {
   
 }
 
-class MainApp extends StatelessWidget {
+class MainApp extends ConsumerWidget {
   const MainApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isDarkMode = ref.watch(darkModeProvider);
+    final selectedcolor = ref.watch(selectedColorProvider);
     return  MaterialApp.router(
       title: "Flutter Widgets",
       routerConfig: appRouter,
       debugShowCheckedModeBanner: false,
-      theme: AppTheme(selectedColor: 0).getTheme(),
+      theme: AppTheme(selectedColor: selectedcolor, isDarkMode: isDarkMode).getTheme(),
       
     );
   }
