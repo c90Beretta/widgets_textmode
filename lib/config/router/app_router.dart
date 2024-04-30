@@ -24,7 +24,7 @@ final appRouter = GoRouter(
     GoRoute(
       name: TicketsScreens.name,
       path: '/tickets',
-      builder: (context, state) => const TicketsScreens(),
+      builder: (context, state) =>  TicketsScreens(),
     ),
     GoRoute(
       name: ProgresScreen.name,
